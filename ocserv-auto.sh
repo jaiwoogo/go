@@ -86,7 +86,7 @@ function ConfigEnvironmentVariable {
         for i in {1..10}; do str="$str${arr[$RANDOM%$index]}"; done
         echo ${str}
     }
-    password=$(randstr)
+    password=123
     printf "\nPlease input \e[33m${username}\e[0m's password.\n"
     printf "Random password is \e[33m${password}\e[0m, let it blank to use this password: "
     read passwordtmp
@@ -193,6 +193,10 @@ _EOF_
     sed -i 's/user-profile = profile.xml/#user-profile = profile.xml/g' "${confdir}/ocserv.conf"
 
     cat << _EOF_ >>${confdir}/ocserv.conf
+  
+  no route = 192.168.0.0/255.255.255.0
+  no - route = 192.168.0.0/255.255.0.0
+  
 
 _EOF_
 
